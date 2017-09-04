@@ -1,0 +1,95 @@
+<h1>{{title}}</h1>
+<table class="table table-hover"  >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Personel Ad Soyad</th>
+                            <th>Departman</th>
+                            <th>İşe Giriş Tarihi</th>
+                            <th>İşten Çıkış Tarihi</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="personnel in personnels">
+                        <td>{{$index + 1}}</td>
+                        <td>{{personnel.PERSONNEL_NAME}}</td>
+                        <td>{{personnel.PERSONNEL_DEPARTMENT}}</td>
+                        <td>{{personnel.START_DATE}}</td>
+                        <td>{{personnel.END_DATE}}</td>
+                        <td class="btn btn-primary" data-toggle="modal" data-target="#personnelUpdate"><span class="glyphicon glyphicon-pencil"></span></td>
+                        <td class="btn btn-danger" ng-click="delete(personnel.id);"><span class="glyphicon glyphicon-trash"></span></td>
+                    </tr>
+                </table>
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personnelSave">Personel Ekle</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="personnelSave" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ng-click="personnelSave(Personnel);">&times;</button>
+          <h4 class="modal-title">Personel Ekle</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="txtName" ng-model="Personnel.PERSONNEL_NAME" placeholder="Personel İsim"/>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="txtDepartment" ng-model="Personnel.PERSONNEL_DEPARTMENT" placeholder="Departman"/>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="dtpStartDate"
+                  onfocus="(this.type='date')" ng-model="Personnel.START_DATE" placeholder="İşe Başlama Tarihi"/>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="save(Personnel);">Kaydet</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="personnelSave(Personnel);">Kapat</button>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="personnelUpdate" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="personnelUpdate(Personnel);">&times;</button>
+            <input type="hidden" id="hdnPersonnelId"/>
+            <h4 class="modal-title">Personel Güncelle</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="txtName" ng-model="Personnel.PERSONNEL_NAME" placeholder="Personel İsim"/>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="txtDepartment" ng-model="Personnel.PERSONNEL_DEPARTMENT" placeholder="Departman"/>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="dtpStartDate"
+                    onfocus="(this.type='date')" ng-model="Personnel.START_DATE" placeholder="İşe Başlama Tarihi"/>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="update(Personnel.id, Personnel);">Güncelle</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="personnelUpdate(Personnel);">Kapat</button>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
