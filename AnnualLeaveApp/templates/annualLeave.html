@@ -1,0 +1,77 @@
+<h1>{{title}}</h1>
+<table class="table table-hover">
+  <thead>
+  <tr>
+   <th>#</th>
+   <th>İzin Türü</th>
+  </tr>
+  </thead>
+  <tr ng-repeat="annualLeave in annualLeaves">
+   <td>{{$index + 1}}</td>
+   <td>{{annualLeave.LEAVE_TYPE}}</td>
+   <td class="btn btn-primary" data-toggle="modal" data-target="#annualLeaveUpdate"><span class="glyphicon glyphicon-pencil"></span></td>
+   <td class="btn btn-danger" ng-click="delete(annualLeave.id);"><span class="glyphicon glyphicon-trash"></span></td>
+  </tr>
+</table>
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#annualLeaveSave">İzin Tipi Ekle</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="annualLeaveSave" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">İzin Tipi Ekle</h4>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <td align="right"><label >İzin tipi Ad :</label></td>
+              <td><input type="text" id="txtAnnualLeaveName" ng-model="annualLeave.LEAVE_TYPE_NAME"/></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="save(annualLeave);">Kaydet</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="annualLeaveUpdate" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <input type="hidden" id="hdnAnnualLeaveId"/>
+            <h4 class="modal-title">İzin Tipi Güncelle</h4>
+          </div>
+          <div class="modal-body">
+            <table>
+              <tr>
+                <td align="right"><label >İzin Tipi Ad :</label></td>
+                <td><input type="text" id="txtAnnualLeaveName" ng-model="annualLeave.LEAVE_TYPE_NAME"/></td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="update(annualLeave.id, annualLeave);">Güncelle</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
